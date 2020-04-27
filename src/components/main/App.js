@@ -1,8 +1,29 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function App() {
-	return <div className='App'> hello world</div>;
+import './App.css';
+import handleInitialData from '../../actions/rootAction';
+import LoadingBar from 'react-redux-loading-bar';
+
+export default function App() {
+	const state = useSelector(initialStateSelector);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(handleInitialData());
+	}, []);
+
+	return (
+		<div className='App'>
+			<LoadingBar />
+			<div>hello world</div>
+		</div>
+	);
 }
 
-export default App;
+function initialStateSelector({ users, tweets }) {
+	return {
+		users,
+		tweets,
+	};
+}
