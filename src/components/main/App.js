@@ -1,29 +1,25 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
 import './App.css';
-import handleInitialData from '../../actions/rootAction';
+
 import LoadingBar from 'react-redux-loading-bar';
+import Home from '../pages/home/Home.js';
+import useInitData from '../../hooks/useInitData';
+import useAuthUser from '../../hooks/useAuthUser';
 
 export default function App() {
-	const state = useSelector(initialStateSelector);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(handleInitialData());
-	}, []);
+	useInitData();
+	const authUser = useAuthUser();
 
 	return (
-		<div className='App'>
-			<LoadingBar />
-			<div>hello world</div>
+		<div className='container App'>
+			<LoadingBar className='loader' />
+			{authUser && (
+				<>
+					<div>{JSON.stringify(authUser, null, 2)}</div>
+					<Home />
+				</>
+			)}
 		</div>
 	);
-}
-
-function initialStateSelector({ users, tweets }) {
-	return {
-		users,
-		tweets,
-	};
 }
