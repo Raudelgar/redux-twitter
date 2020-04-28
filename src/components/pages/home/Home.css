@@ -47,7 +47,7 @@ li {
 	font-size: 1.7rem;
 }
 
-.tweet-icons span {
+.replay-icon {
 	vertical-align: bottom;
 }
 
@@ -62,6 +62,7 @@ li {
 	font-size: 1.7rem;
 }
 
-.tweet-icons:hover {
+.replay-icon:hover,
+.heart-btn:hover {
 	color: #61dafb;
 }

@@ -15,7 +15,7 @@ export default function TweetView({ tweet }) {
 						<p>{text}</p>
 					</div>
 					<div className='tweet-icons'>
-						<span>
+						<span className='replay-icon'>
 							<TiArrowBackOutline />
 						</span>
 						<button className='heart-btn'>

@@ -1,0 +1,47 @@
+.nav {
+	height: 50px;
+	/* background-color: lavender; */
+}
+
+.nav ul {
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+	height: 100%;
+	align-items: center;
+	padding-left: 15px;
+}
+
+.nav ul div {
+	padding: 10px;
+}
+
+.nav ul div:first-child {
+	padding-right: 0;
+}
+
+.link {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+	border: none;
+	color: #8d8a8a;
+}
+
+.link:hover {
+	outline: none;
+	border: none;
+	color: #cfcece;
+}
+
+.active {
+	padding-bottom: 10px;
+	border-bottom: 2px solid #61dafb;
+	font-weight: 700;
+	color: #fff;
+}
+
+.active:hover {
+	border-bottom: 2px solid #61dafb;
+	color: #fff;
+}

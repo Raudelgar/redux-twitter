@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
 import LoadingBar from 'react-redux-loading-bar';
+import Nav from '../nav/Nav.js';
 import Home from '../pages/home/Home.js';
 import NewTweet from '../pages/new-tweet/NewTweet.js';
 import useInitData from '../../hooks/useInitData';
@@ -13,14 +15,16 @@ export default function App() {
 	const authUser = useAuthUser();
 
 	return (
-		<div className='container App'>
-			<LoadingBar className='loader' />
-			{authUser && (
-				<>
-					<div>{JSON.stringify(authUser, null, 2)}</div>
-					<NewTweet />
-				</>
-			)}
-		</div>
+		<Router>
+			<div className='container App'>
+				<LoadingBar className='loader' />
+				<Nav />
+				{authUser && (
+					<>
+						<Home />
+					</>
+				)}
+			</div>
+		</Router>
 	);
 }

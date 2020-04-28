@@ -6,7 +6,7 @@ import TweetView from './TweetView.js';
 
 export default function Home() {
 	const tweetsFormatted = useHomeData();
-	console.log(tweetsFormatted);
+
 	return (
 		<div>
 			<h3 className='center-text'>Your Timeline</h3>

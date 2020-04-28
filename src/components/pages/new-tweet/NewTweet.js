@@ -34,7 +34,7 @@ export default function NewTweet() {
 				<button
 					disabled={isBtnDisabled ? 'disabled' : false}
 					type='submit'
-					className={`btn ${isBtnDisabled ? '' : 'active'}`}
+					className={`btn ${isBtnDisabled ? '' : 'submit'}`}
 				>
 					submit
 				</button>
