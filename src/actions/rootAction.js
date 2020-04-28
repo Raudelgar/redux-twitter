@@ -4,7 +4,7 @@ import { receiveTweets } from './tweets/tweetsAction';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { setAuthUser } from './auth/authAction';
 
-export default function handleInitialData() {
+export function handleInitialData() {
 	return (dispatch) => {
 		dispatch(showLoading());
 		fetchInitialData()
@@ -14,5 +14,14 @@ export default function handleInitialData() {
 				dispatch(receiveTweets({ ...tweets }));
 			})
 			.then(() => dispatch(hideLoading()));
+	};
+}
+
+export function handleUpdateState() {
+	return (dispatch) => {
+		fetchInitialData().then(({ users, tweets }) => {
+			dispatch(receiveUsers({ ...users }));
+			dispatch(receiveTweets({ ...tweets }));
+		});
 	};
 }

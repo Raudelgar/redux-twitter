@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import handleInitialData from '../actions/rootAction';
+import { handleInitialData } from '../actions/rootAction';
 import {
 	authUserSelector,
 	usersSelector,

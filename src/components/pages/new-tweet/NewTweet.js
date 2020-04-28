@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import './NewTweet.css';
+import useAuthUser from '../../../hooks/useAuthUser';
+import { useDispatch } from 'react-redux';
+import { handleAddNewTweet } from '../../../actions/tweets/tweetsAction';
+import { isObjEmpty } from '../../../utils/helper';
 
-export default function NewTweet() {
+export default function NewTweet(props) {
 	const [isBtnDisabled, setBtnDisbaled] = useState(true);
 	const [comment, setComment] = useState('');
+	const authUser = useAuthUser();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (!comment) {
@@ -20,10 +26,26 @@ export default function NewTweet() {
 		setComment(e.target.value);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(props);
+		if (!isObjEmpty(props)) {
+			props.history.push('/');
+		}
+		dispatch(
+			handleAddNewTweet({
+				text: comment,
+				author: authUser,
+				replyingTo: null,
+			})
+		);
+		setComment('');
+	};
+
 	return (
 		<div>
 			<h3 className='center-text'>Compose new Tweet</h3>
-			<form className='new-tweet'>
+			<form className='new-tweet' onSubmit={handleSubmit}>
 				<textarea
 					placeholder="What's happening?"
 					maxLength='280'
