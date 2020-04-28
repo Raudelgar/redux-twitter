@@ -51,6 +51,11 @@ li {
 	vertical-align: bottom;
 }
 
+.reply-link {
+	text-decoration: none;
+	color: inherit;
+}
+
 .heart-btn {
 	border: none;
 	background-color: transparent;
