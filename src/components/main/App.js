@@ -4,6 +4,7 @@ import './App.css';
 
 import LoadingBar from 'react-redux-loading-bar';
 import Home from '../pages/home/Home.js';
+import NewTweet from '../pages/new-tweet/NewTweet.js';
 import useInitData from '../../hooks/useInitData';
 import useAuthUser from '../../hooks/useAuthUser';
 
@@ -17,7 +18,7 @@ export default function App() {
 			{authUser && (
 				<>
 					<div>{JSON.stringify(authUser, null, 2)}</div>
-					<Home />
+					<NewTweet />
 				</>
 			)}
 		</div>

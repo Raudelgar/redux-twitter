@@ -21,6 +21,7 @@ export default function TweetView({ tweet }) {
 						<button className='heart-btn'>
 							<TiHeartOutline />
 						</button>
+						<span style={{ fontSize: '1rem' }}>{likes}</span>
 					</div>
 				</div>
 			</a>
