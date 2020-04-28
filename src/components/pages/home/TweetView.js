@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TiArrowBackOutline, TiHeartOutline } from 'react-icons/ti';
+import { useDispatch } from 'react-redux';
+import { TiArrowBackOutline, TiHeartOutline, TiHeart } from 'react-icons/ti';
+
+import useAuthUser from '../../../hooks/useAuthUser.js';
+import { updateTweetLikes } from '../../../actions/tweets/tweetsAction.js';
 
 export default function TweetView({ tweet }) {
+	const authUser = useAuthUser();
+	const dispatch = useDispatch();
 	const { tweetId, name, avatar, time, replyingTo, text, likes } = tweet;
+	const [isheartClicked, setHeartClicked] = useState(false);
 
 	const handleLikesUpdate = (e) => {
 		e.preventDefault();
 		console.log('Likes');
+		setHeartClicked(true);
+		dispatch(updateTweetLikes({ authUser, tweetId }));
 	};
 	return (
 		<li>
@@ -24,8 +33,11 @@ export default function TweetView({ tweet }) {
 						<span className='replay-icon'>
 							<TiArrowBackOutline />
 						</span>
-						<button className='heart-btn' onClick={handleLikesUpdate}>
-							<TiHeartOutline />
+						<button
+							className={`heart-btn ${isheartClicked ? 'clicked' : ''}`}
+							onClick={handleLikesUpdate}
+						>
+							{isheartClicked ? <TiHeart /> : <TiHeartOutline />}
 						</button>
 						<span style={{ fontSize: '1rem' }}>{likes}</span>
 					</div>

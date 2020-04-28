@@ -62,7 +62,13 @@ li {
 	color: inherit;
 	padding-bottom: 0;
 	padding-left: 30px;
+	outline: none;
 }
+
+.clicked {
+	color: #ad2323;
+}
+
 .heart-btn svg {
 	font-size: 1.7rem;
 }
@@ -70,4 +76,8 @@ li {
 .replay-icon:hover,
 .heart-btn:hover {
 	color: #61dafb;
+}
+
+.clicked:hover {
+	color: #ec0c0c;
 }
