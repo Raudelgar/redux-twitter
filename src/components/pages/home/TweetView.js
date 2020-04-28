@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux';
 import { TiArrowBackOutline, TiHeartOutline, TiHeart } from 'react-icons/ti';
 
 import useAuthUser from '../../../hooks/useAuthUser.js';
-import { updateTweetLikes } from '../../../actions/tweets/tweetsAction.js';
+import {
+	incrementTweetLikes,
+	decrementTweetLikes,
+} from '../../../actions/tweets/tweetsAction.js';
 
 export default function TweetView({ tweet }) {
 	const authUser = useAuthUser();
@@ -13,10 +16,15 @@ export default function TweetView({ tweet }) {
 	const [isheartClicked, setHeartClicked] = useState(false);
 
 	const handleLikesUpdate = (e) => {
+		//TODO: It can be more than one like per authuser
 		e.preventDefault();
-		console.log('Likes');
-		setHeartClicked(true);
-		dispatch(updateTweetLikes({ authUser, tweetId }));
+		if (isheartClicked) {
+			setHeartClicked(false);
+			dispatch(decrementTweetLikes(tweetId));
+		} else {
+			setHeartClicked(true);
+			dispatch(incrementTweetLikes({ authUser, tweetId }));
+		}
 	};
 	return (
 		<li>
@@ -46,10 +54,3 @@ export default function TweetView({ tweet }) {
 		</li>
 	);
 }
-
-/* 
-<Link to={`/tweet/${tweetId}`} className='reply-link'>
-								<TiArrowBackOutline />
-							</Link>
-
-*/

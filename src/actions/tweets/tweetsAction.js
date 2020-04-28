@@ -1,4 +1,4 @@
-import { RECEIVE_TWEETS, UPDATE_LIKE } from '../types.js';
+import { RECEIVE_TWEETS, INCREMENT_LIKE, DECREMENT_LIKE } from '../types.js';
 
 export function receiveTweets(tweets) {
 	return {
@@ -7,9 +7,15 @@ export function receiveTweets(tweets) {
 	};
 }
 
-export function updateTweetLikes(data) {
+export function incrementTweetLikes(data) {
 	return {
-		type: UPDATE_LIKE,
+		type: INCREMENT_LIKE,
 		payload: data,
+	};
+}
+export function decrementTweetLikes(id) {
+	return {
+		type: DECREMENT_LIKE,
+		payload: id,
 	};
 }
