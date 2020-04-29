@@ -28,7 +28,7 @@ export default function NewTweet(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(props);
+
 		if (!isObjEmpty(props)) {
 			props.history.push('/');
 		}

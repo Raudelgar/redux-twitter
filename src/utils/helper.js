@@ -30,7 +30,8 @@ export function formmatHomeTweetsContent(tweetsAsc, tweets, users) {
 			obj.replyingTo = `Replying to @${tweets[tweet.replyingTo].author}`;
 		}
 		obj.text = tweet.text;
-		obj.likes = tweet.likes.length;
+		obj.likes = tweet.likes;
+		obj.likesCount = tweet.likes.length;
 		results.push(obj);
 	});
 
@@ -57,7 +58,8 @@ export function formmatComposeTweet(id, tweets, users) {
 		obj.replyingTo = `Replying to @${tweets[tweet.replyingTo].author}`;
 	}
 	obj.text = tweet.text;
-	obj.likes = tweet.likes.length;
+	obj.likes = tweet.likes;
+	obj.likesCount = tweet.likes.length;
 
 	return obj;
 }

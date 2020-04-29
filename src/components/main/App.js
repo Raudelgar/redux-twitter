@@ -25,6 +25,15 @@ export default function App() {
 						<Route exact path='/' component={Home} />
 						<Route path='/new' component={NewTweet} />
 						<Route path='/tweet/:id' component={Tweet} />
+						<Route
+							render={() => (
+								<div>
+									<h2 style={{ textAlign: 'center', color: 'inherit' }}>
+										404 - Page Not Found
+									</h2>
+								</div>
+							)}
+						/>
 					</Switch>
 				)}
 			</div>
