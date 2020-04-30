@@ -23,6 +23,7 @@ export function formmatHomeTweetsContent(tweetsAsc, tweets, users) {
 		obj.userId = tweet.author;
 		obj.name = user.name;
 		obj.avatar = user.avatarURL;
+		obj.timestamp = tweet.timestamp;
 		obj.time = `${new Date(tweet.timestamp).toLocaleTimeString()} | ${new Date(
 			tweet.timestamp
 		).toLocaleDateString()}`;
@@ -32,7 +33,8 @@ export function formmatHomeTweetsContent(tweetsAsc, tweets, users) {
 		obj.text = tweet.text;
 		obj.likes = tweet.likes;
 		obj.likesCount = tweet.likes.length;
-		obj.replies = tweet.replies.length;
+		obj.replies = tweet.replies;
+		obj.repliesCount = tweet.replies.length;
 		results.push(obj);
 	});
 
@@ -52,6 +54,7 @@ export function formmatComposeTweet(id, tweets, users) {
 	obj.userId = tweet.author;
 	obj.name = user.name;
 	obj.avatar = user.avatarURL;
+	obj.timestamp = tweet.timestamp;
 	obj.time = `${new Date(tweet.timestamp).toLocaleTimeString()} | ${new Date(
 		tweet.timestamp
 	).toLocaleDateString()}`;
@@ -61,7 +64,8 @@ export function formmatComposeTweet(id, tweets, users) {
 	obj.text = tweet.text;
 	obj.likes = tweet.likes;
 	obj.likesCount = tweet.likes.length;
-	obj.replies = tweet.replies.length;
+	obj.replies = tweet.replies;
+	obj.repliesCount = tweet.replies.length;
 
 	return obj;
 }

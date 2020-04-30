@@ -1,8 +1,7 @@
 import React from 'react';
 
-import './Home.css';
 import useHomeData from '../../../hooks/useHomeData';
-import TweetView from './TweetView.js';
+import TweetView from '../../View/TweetView.js';
 
 export default function Home() {
 	const tweetsFormatted = useHomeData();
