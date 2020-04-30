@@ -21,6 +21,7 @@ export default function TweetView({ tweet }) {
 		text,
 		likes,
 		likesCount,
+		replies,
 	} = tweet;
 	const [isheartClicked, setHeartClicked] = useState(likes.includes(authUser));
 
@@ -47,8 +48,9 @@ export default function TweetView({ tweet }) {
 						<p>{text}</p>
 					</div>
 					<div className='tweet-icons'>
-						<span className='replay-icon'>
-							<TiArrowBackOutline />
+						<TiArrowBackOutline className='replay-icon' />
+						<span style={{ fontSize: '1rem', paddingLeft: '5px' }}>
+							{!replies ? null : replies}
 						</span>
 						<button
 							className={`heart-btn ${isheartClicked ? 'clicked' : ''}`}

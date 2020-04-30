@@ -2,6 +2,8 @@ import {
 	RECEIVE_TWEETS,
 	INCREMENT_LIKE,
 	DECREMENT_LIKE,
+	ADD_TWEET,
+	ADD_TWEET_REPLAY,
 } from '../actions/types';
 
 export default function tweetsReducer(state = {}, { type, payload }) {
@@ -27,6 +29,22 @@ export default function tweetsReducer(state = {}, { type, payload }) {
 				[payload]: {
 					...state[payload],
 					likes: state[payload].likes.slice(0, lastIndex),
+				},
+			};
+		case ADD_TWEET:
+			return {
+				...state,
+				[payload.id]: payload,
+			};
+		case ADD_TWEET_REPLAY:
+			const { tweet, replayId } = payload;
+			const { id } = tweet;
+			return {
+				...state,
+				[id]: tweet,
+				[replayId]: {
+					...state[replayId],
+					replies: state[replayId].replies.concat([id]),
 				},
 			};
 		default:

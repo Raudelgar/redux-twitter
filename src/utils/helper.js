@@ -32,6 +32,7 @@ export function formmatHomeTweetsContent(tweetsAsc, tweets, users) {
 		obj.text = tweet.text;
 		obj.likes = tweet.likes;
 		obj.likesCount = tweet.likes.length;
+		obj.replies = tweet.replies.length;
 		results.push(obj);
 	});
 
@@ -60,6 +61,7 @@ export function formmatComposeTweet(id, tweets, users) {
 	obj.text = tweet.text;
 	obj.likes = tweet.likes;
 	obj.likesCount = tweet.likes.length;
+	obj.replies = tweet.replies.length;
 
 	return obj;
 }
