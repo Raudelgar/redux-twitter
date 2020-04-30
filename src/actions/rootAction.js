@@ -17,11 +17,12 @@ export function handleInitialData() {
 	};
 }
 
-export function handleUpdateState() {
-	return (dispatch) => {
-		fetchInitialData().then(({ users, tweets }) => {
-			dispatch(receiveUsers({ ...users }));
-			dispatch(receiveTweets({ ...tweets }));
-		});
-	};
-}
+//This will work if each action is persist on a database
+// export function handleUpdateState() {
+// 	return (dispatch) => {
+// 		fetchInitialData().then(({ users, tweets }) => {
+// 			dispatch(receiveUsers({ ...users }));
+// 			dispatch(receiveTweets({ ...tweets }));
+// 		});
+// 	};
+// }

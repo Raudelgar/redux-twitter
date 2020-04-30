@@ -11,7 +11,7 @@ export default function Tweet({ match }) {
 	return (
 		<div>
 			<TweetView tweet={tweet} />
-			<NewTweet />
+			<NewTweet id={id} />
 		</div>
 	);
 }

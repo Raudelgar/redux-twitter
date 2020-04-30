@@ -1,7 +1,12 @@
-import { RECEIVE_TWEETS, INCREMENT_LIKE, DECREMENT_LIKE } from '../types.js';
+import {
+	RECEIVE_TWEETS,
+	INCREMENT_LIKE,
+	DECREMENT_LIKE,
+	ADD_TWEET,
+	ADD_TWEET_REPLAY,
+} from '../types.js';
 import { postNewTweet } from '../../utils/api.js';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { handleUpdateState } from '../rootAction.js';
 
 export function receiveTweets(tweets) {
 	return {
@@ -24,12 +29,33 @@ export function decrementTweetLikes(id) {
 	};
 }
 
+function addTweet(tweet) {
+	return {
+		type: ADD_TWEET,
+		payload: tweet,
+	};
+}
+
+function addTweetReplay(tweet, replayId) {
+	return {
+		type: ADD_TWEET_REPLAY,
+		payload: {
+			tweet,
+			replayId,
+		},
+	};
+}
+
 export function handleAddNewTweet(rawTweet) {
 	return (dispatch) => {
 		dispatch(showLoading());
 		postNewTweet(rawTweet)
 			.then((tweet) => {
-				dispatch(handleUpdateState());
+				if (!rawTweet.replyingTo) {
+					dispatch(addTweet(tweet));
+				} else {
+					dispatch(addTweetReplay(tweet, rawTweet.replyingTo));
+				}
 			})
 			.then(() => dispatch(hideLoading()));
 	};

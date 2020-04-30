@@ -12,20 +12,30 @@ import {
 export default function TweetView({ tweet }) {
 	const authUser = useAuthUser();
 	const dispatch = useDispatch();
-	const { tweetId, name, avatar, time, replyingTo, text, likes } = tweet;
-	const [isheartClicked, setHeartClicked] = useState(false);
+	const {
+		tweetId,
+		name,
+		avatar,
+		time,
+		replyingTo,
+		text,
+		likes,
+		likesCount,
+		replies,
+	} = tweet;
+	const [isheartClicked, setHeartClicked] = useState(likes.includes(authUser));
 
 	const handleLikesUpdate = (e) => {
-		//TODO: It can be more than one like per authuser
 		e.preventDefault();
+
 		if (isheartClicked) {
-			setHeartClicked(false);
 			dispatch(decrementTweetLikes(tweetId));
 		} else {
-			setHeartClicked(true);
 			dispatch(incrementTweetLikes({ authUser, tweetId }));
 		}
+		setHeartClicked((curr) => (curr ? false : true));
 	};
+
 	return (
 		<li>
 			<Link className='tweet' to={`/tweet/${tweetId}`}>
@@ -38,8 +48,9 @@ export default function TweetView({ tweet }) {
 						<p>{text}</p>
 					</div>
 					<div className='tweet-icons'>
-						<span className='replay-icon'>
-							<TiArrowBackOutline />
+						<TiArrowBackOutline className='replay-icon' />
+						<span style={{ fontSize: '1rem', paddingLeft: '5px' }}>
+							{!replies ? null : replies}
 						</span>
 						<button
 							className={`heart-btn ${isheartClicked ? 'clicked' : ''}`}
@@ -47,7 +58,7 @@ export default function TweetView({ tweet }) {
 						>
 							{isheartClicked ? <TiHeart /> : <TiHeartOutline />}
 						</button>
-						<span style={{ fontSize: '1rem' }}>{likes}</span>
+						<span style={{ fontSize: '1rem' }}>{likesCount}</span>
 					</div>
 				</div>
 			</Link>

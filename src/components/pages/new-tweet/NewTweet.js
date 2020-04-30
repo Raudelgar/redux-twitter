@@ -4,7 +4,6 @@ import './NewTweet.css';
 import useAuthUser from '../../../hooks/useAuthUser';
 import { useDispatch } from 'react-redux';
 import { handleAddNewTweet } from '../../../actions/tweets/tweetsAction';
-import { isObjEmpty } from '../../../utils/helper';
 
 export default function NewTweet(props) {
 	const [isBtnDisabled, setBtnDisbaled] = useState(true);
@@ -28,15 +27,16 @@ export default function NewTweet(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(props);
-		if (!isObjEmpty(props)) {
+
+		if (props.history) {
 			props.history.push('/');
 		}
+
 		dispatch(
 			handleAddNewTweet({
 				text: comment,
 				author: authUser,
-				replyingTo: null,
+				replyingTo: !props.id ? null : props.id,
 			})
 		);
 		setComment('');

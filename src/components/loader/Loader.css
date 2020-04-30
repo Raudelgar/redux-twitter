@@ -1,0 +1,10 @@
+.loader {
+	position: absolute;
+	display: block;
+	width: 100%;
+	min-height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: #302f2fb2;
+	z-index: 2;
+}
