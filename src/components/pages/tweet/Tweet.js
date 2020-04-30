@@ -19,11 +19,13 @@ export default function Tweet(props) {
 	useEffect(() => {
 		if (tweet.replies.length !== 0) {
 			setReplyTweets((curr) =>
-				tweet.replies.map((id) => formmatComposeTweet(id, tweets, users))
+				tweet.replies
+					.map((id) => formmatComposeTweet(id, tweets, users))
+					.sort((a, b) => b.timestamp - a.timestamp)
 			);
 		}
 	}, [tweet.replies]);
-	console.log(replyTweets);
+
 	return (
 		<div>
 			<TweetView tweet={tweet} />
