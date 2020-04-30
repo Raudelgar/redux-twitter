@@ -7,7 +7,6 @@ import {
 } from '../types.js';
 import { postNewTweet } from '../../utils/api.js';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { handleUpdateState } from '../rootAction.js';
 
 export function receiveTweets(tweets) {
 	return {
