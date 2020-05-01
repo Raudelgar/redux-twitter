@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import TweetView from '../../View/TweetView.js';
 import NewTweet from '../new-tweet/NewTweet.js';
-import useComposeTweet from '../../../hooks/useComposeTweet';
-import useTweetReply from '../../../hooks/useTweetReply.js';
 import useTweetState from '../../../hooks/useTweetState.js';
 import useUserState from '../../../hooks/useUserState.js';
 import { formmatComposeTweet } from '../../../utils/helper.js';
 
-export default function Tweet(props) {
-	const { id } = props.match.params;
-	const tweet = useComposeTweet(id);
+export default function Tweet({ match }) {
+	const { id } = match.params;
 	const tweets = useTweetState();
 	const users = useUserState();
-	const { isRepliesClicked } = useTweetReply();
+	const tweet = formmatComposeTweet(id, tweets, users);
+
 	const [replyTweets, setReplyTweets] = useState([]);
 
 	useEffect(() => {
@@ -24,7 +22,7 @@ export default function Tweet(props) {
 					.sort((a, b) => b.timestamp - a.timestamp)
 			);
 		}
-	}, [tweet.replies]);
+	}, [tweet.replies, id, tweets, users]);
 
 	return (
 		<div>

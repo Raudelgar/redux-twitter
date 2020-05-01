@@ -6,7 +6,6 @@ import { TiArrowBackOutline, TiHeartOutline, TiHeart } from 'react-icons/ti';
 import './TweetView.css';
 
 import useAuthUser from '../../hooks/useAuthUser.js';
-import useTweetReply from '../../hooks/useTweetReply.js';
 import {
 	incrementTweetLikes,
 	decrementTweetLikes,
@@ -27,7 +26,6 @@ export default function TweetView({ tweet }) {
 		repliesCount,
 	} = tweet;
 	const [isheartClicked, setHeartClicked] = useState(likes.includes(authUser));
-	const { handleReplyClick } = useTweetReply();
 
 	const handleLikesUpdate = (e) => {
 		e.preventDefault();
@@ -55,9 +53,7 @@ export default function TweetView({ tweet }) {
 						<TiArrowBackOutline className='replay-icon' />
 						<span style={{ fontSize: '1rem', paddingLeft: '5px' }}>
 							{!repliesCount ? null : (
-								<button className='btn-replies' onClick={handleReplyClick}>
-									{repliesCount}
-								</button>
+								<button className='btn-replies'>{repliesCount}</button>
 							)}
 						</span>
 						<button
@@ -66,7 +62,9 @@ export default function TweetView({ tweet }) {
 						>
 							{isheartClicked ? <TiHeart /> : <TiHeartOutline />}
 						</button>
-						<span style={{ fontSize: '1rem' }}>{likesCount}</span>
+						<span style={{ fontSize: '1rem' }}>
+							{!likesCount ? null : likesCount}
+						</span>
 					</div>
 				</div>
 			</Link>
