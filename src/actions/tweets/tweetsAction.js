@@ -8,21 +8,28 @@ import {
 import { postNewTweet } from '../../utils/api.js';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
-export function receiveTweets(tweets) {
+const tweetActions = {
+	receiveTweets,
+	incrementTweetLikes,
+	decrementTweetLikes,
+	handleAddNewTweet,
+};
+
+function receiveTweets(tweets) {
 	return {
 		type: RECEIVE_TWEETS,
 		payload: tweets,
 	};
 }
 
-export function incrementTweetLikes(data) {
+function incrementTweetLikes(data) {
 	return {
 		type: INCREMENT_LIKE,
 		payload: data,
 	};
 }
 
-export function decrementTweetLikes(id) {
+function decrementTweetLikes(id) {
 	return {
 		type: DECREMENT_LIKE,
 		payload: id,
@@ -46,7 +53,7 @@ function addTweetReplay(tweet, replayId) {
 	};
 }
 
-export function handleAddNewTweet(rawTweet) {
+function handleAddNewTweet(rawTweet) {
 	return (dispatch) => {
 		dispatch(showLoading());
 		postNewTweet(rawTweet)
@@ -60,3 +67,5 @@ export function handleAddNewTweet(rawTweet) {
 			.then(() => dispatch(hideLoading()));
 	};
 }
+
+export default tweetActions;

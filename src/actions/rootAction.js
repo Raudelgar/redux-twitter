@@ -1,17 +1,17 @@
 import { fetchInitialData } from '../utils/api';
-import { receiveUsers } from './users/usersAction';
-import { receiveTweets } from './tweets/tweetsAction';
+import userActions from './users/usersAction';
+import tweetActions from './tweets/tweetsAction';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { setAuthUser } from './auth/authAction';
+// import { setAuthUser } from './auth/authAction';
 
 export function handleInitialData() {
 	return (dispatch) => {
 		dispatch(showLoading());
 		fetchInitialData()
 			.then(({ users, tweets }) => {
-				dispatch(setAuthUser());
-				dispatch(receiveUsers({ ...users }));
-				dispatch(receiveTweets({ ...tweets }));
+				dispatch(userActions.setAuthUser());
+				dispatch(userActions.setUsers({ ...users }));
+				dispatch(tweetActions.receiveTweets({ ...tweets }));
 			})
 			.then(() => dispatch(hideLoading()));
 	};

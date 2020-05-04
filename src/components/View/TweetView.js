@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { TiArrowBackOutline, TiHeartOutline, TiHeart } from 'react-icons/ti';
 
-import useAuthUser from '../../../hooks/useAuthUser.js';
-import {
-	incrementTweetLikes,
-	decrementTweetLikes,
-} from '../../../actions/tweets/tweetsAction.js';
+import './TweetView.css';
+
+import useAuthUser from '../../hooks/useAuthUser.js';
+import tweetActions from '../../actions/tweets/tweetsAction.js';
 
 export default function TweetView({ tweet }) {
 	const authUser = useAuthUser();
@@ -21,7 +20,7 @@ export default function TweetView({ tweet }) {
 		text,
 		likes,
 		likesCount,
-		replies,
+		repliesCount,
 	} = tweet;
 	const [isheartClicked, setHeartClicked] = useState(likes.includes(authUser));
 
@@ -29,9 +28,9 @@ export default function TweetView({ tweet }) {
 		e.preventDefault();
 
 		if (isheartClicked) {
-			dispatch(decrementTweetLikes(tweetId));
+			dispatch(tweetActions.decrementTweetLikes(tweetId));
 		} else {
-			dispatch(incrementTweetLikes({ authUser, tweetId }));
+			dispatch(tweetActions.incrementTweetLikes({ authUser, tweetId }));
 		}
 		setHeartClicked((curr) => (curr ? false : true));
 	};
@@ -50,7 +49,9 @@ export default function TweetView({ tweet }) {
 					<div className='tweet-icons'>
 						<TiArrowBackOutline className='replay-icon' />
 						<span style={{ fontSize: '1rem', paddingLeft: '5px' }}>
-							{!replies ? null : replies}
+							{!repliesCount ? null : (
+								<button className='btn-replies'>{repliesCount}</button>
+							)}
 						</span>
 						<button
 							className={`heart-btn ${isheartClicked ? 'clicked' : ''}`}
@@ -58,7 +59,9 @@ export default function TweetView({ tweet }) {
 						>
 							{isheartClicked ? <TiHeart /> : <TiHeartOutline />}
 						</button>
-						<span style={{ fontSize: '1rem' }}>{likesCount}</span>
+						<span style={{ fontSize: '1rem' }}>
+							{!likesCount ? null : likesCount}
+						</span>
 					</div>
 				</div>
 			</Link>

@@ -1,0 +1,84 @@
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: Arial;
+
+	div:nth-child(1) {
+		position: absolute;
+		top: 30%;
+		bottom: 40%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		box-shadow: 0px 0px 5px 0 #0303035c;
+		transition: 0.3s;
+		width: 290px;
+		height: 256px;
+		background-color: #fff;
+		color: #282c34;
+		border-radius: 0.3em;
+
+		h1 {
+			font-size: 2rem;
+			margin-bottom: 20px;
+		}
+
+		span:nth-child(3) {
+			margin: 10px 0 20px;
+			color: red;
+		}
+		.login-container {
+			background-color: #fff;
+			width: 75%;
+			border-radius: 0.2em;
+			color: #fff;
+
+			.login-link {
+				color: #2b2b2b;
+				text-transform: uppercase;
+				cursor: pointer;
+				display: flex;
+				height: 50px;
+				width: 100%;
+				justify-content: center;
+				background-color: transparent;
+				border: 2px solid #585757;
+				font-size: 1rem;
+				align-items: center;
+				padding: 5px;
+
+				span:nth-child(2) {
+					margin-left: 5px;
+				}
+			}
+			.spinning {
+				position: relative;
+				border: 4px solid #dedbdb;
+				border-top: 4px solid #3498db;
+				border-radius: 50%;
+				width: 30px;
+				height: 30px;
+				animation: spin 2s linear infinite;
+				background-color: #3333330d;
+			}
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		}
+		.spinning-container {
+			display: flex;
+			justify-content: center;
+			align-content: center;
+			background-color: #3333338c;
+			height: 50px;
+		}
+	}
+}
