@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './NewTweet.css';
 import useAuthUser from '../../../hooks/useAuthUser';
 import { useDispatch } from 'react-redux';
-import { handleAddNewTweet } from '../../../actions/tweets/tweetsAction';
+import tweetActions from '../../../actions/tweets/tweetsAction';
 
 export default function NewTweet(props) {
 	const [isBtnDisabled, setBtnDisbaled] = useState(true);
@@ -27,13 +27,13 @@ export default function NewTweet(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+		console.log(props);
 		if (props.history) {
 			props.history.push('/');
 		}
 
 		dispatch(
-			handleAddNewTweet({
+			tweetActions.handleAddNewTweet({
 				text: comment,
 				author: authUser,
 				replyingTo: !props.id ? null : props.id,

@@ -1,3 +1,10 @@
+import { createBrowserHistory } from 'history';
+
+/**
+ * history object, to abstract history from react router
+ */
+export const history = createBrowserHistory();
+
 /**
  * Tweets in Ascending Order by Timestamp
  *
